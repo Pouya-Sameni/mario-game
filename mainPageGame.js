@@ -98,7 +98,7 @@ function draw ()
     }
 
  
-    
+    requestAnimationFrame(draw);
 }
 
-setInterval(draw,100);
+draw();
