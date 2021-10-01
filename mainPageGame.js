@@ -83,9 +83,8 @@ function keyDownHandler(e) {
         {
             mario_jump.play();
             mario_y = mario_y - 90;  
-            redraw_All();
-            add_mario();
             
+            add_mario();
         }
         
         if (mario_x >= block_x && mario_x <= block_x + 50)
