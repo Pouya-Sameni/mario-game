@@ -81,6 +81,10 @@ function keyDownHandler(e) {
         if (mario_y >= 218)
         {
             mario_y = mario_y - 90;
+            add_mario();
+            redraw_All();
+            sleep(2000);
+            
         }
 
         if (mario_x >= block_x && mario_x <= block_x + 50)
@@ -219,12 +223,12 @@ function draw() {
         mario_y += 2;
     }
 
-
-
-
     requestAnimationFrame(draw);
-
-
 }
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 draw();
