@@ -1,5 +1,5 @@
 var canvas = document.getElementById("initialGame");
-var ctx = canvas.getContext("2d");
+var ctx = canvas.getContext("2d"); 
 
 // ctx.beginPath();
 // ctx.rect(20, 40, 50, 50);
@@ -19,6 +19,7 @@ var draw_mario1 = true;
 var draw_mario1_flip = true;
 var draw_mario2 = false;
 var draw_mario2_flip = false;
+var mario_jump = new Audio('sound_files/mario_jump.mp3');
 
 ////////////////Images - OPEN
 var linkedin = new Image();
@@ -80,23 +81,23 @@ function keyDownHandler(e) {
     else if (e.code == 'Space') {
         if (mario_y >= 218)
         {
-            mario_y = mario_y - 90;
-            add_mario();
+            mario_jump.play();
+            mario_y = mario_y - 90;  
             redraw_All();
+            add_mario();
             
         }
-
+        
         if (mario_x >= block_x && mario_x <= block_x + 50)
         {
-            sleep(2000);
             window.open('https://github.com/Pouya-Sameni', '_blank');
         }
         else if (mario_x >= block_x+150 && mario_x <= block_x + 200){
-            sleep(2000);
+            
             window.open('https://www.linkedin.com/in/pouya-sameni-36250115b/', '_blank');
         }
         else if (mario_x >= block_x+300 && mario_x <= block_x + 350){
-
+            window.open('Files/Pouya_Sameni_Resume.pdf', '_blank');
         }
 
     }
@@ -215,21 +216,31 @@ function draw() {
     add_mario();
 
     if (rightPressed && mario_x < canvas.width - 40) {
-        mario_x += 2;
+        mario_x += 3;
+
+        if (mario_y<218){
+            mario_y += 4;
+        }
     }
     else if (leftPressed && mario_x > 0) {
-        mario_x -= 2;
+        mario_x -= 3;
+        if (mario_y<218){
+            mario_y += 4;
+        }
     }
     else if (!spacePressed && mario_y < 218)  {
-        mario_y += 2;
+        mario_y += 4;
     }
 
     requestAnimationFrame(draw);
 }
 
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
 draw();
