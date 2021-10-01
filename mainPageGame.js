@@ -83,15 +83,16 @@ function keyDownHandler(e) {
             mario_y = mario_y - 90;
             add_mario();
             redraw_All();
-            sleep(2000);
             
         }
 
         if (mario_x >= block_x && mario_x <= block_x + 50)
         {
+            sleep(2000);
             window.open('https://github.com/Pouya-Sameni', '_blank');
         }
         else if (mario_x >= block_x+150 && mario_x <= block_x + 200){
+            sleep(2000);
             window.open('https://www.linkedin.com/in/pouya-sameni-36250115b/', '_blank');
         }
         else if (mario_x >= block_x+300 && mario_x <= block_x + 350){
