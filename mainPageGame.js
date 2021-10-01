@@ -20,7 +20,7 @@ var draw_mario1_flip = true;
 var draw_mario2 = false;
 var draw_mario2_flip = false;
 
-//Images - OPEN
+////////////////Images - OPEN
 var linkedin = new Image();
 linkedin.src = "Images/Linkedin.png";
 var github = new Image();
@@ -78,7 +78,10 @@ function keyDownHandler(e) {
         leftPressed = true;
     }
     else if (e.code == 'Space') {
-        spacePressed = true;
+        if (mario_y >= 218)
+        {
+            mario_y = mario_y - 95;
+        }
     }
 }
 function keyUpHandler(e) {
@@ -163,6 +166,7 @@ function add_mario() {
                 draw_mario2_flip = true;
             }
 
+            
 
         }
     }
@@ -173,6 +177,12 @@ function add_mario() {
         }
         else if (draw_mario2) {
             draw_mario2 = false;
+            draw_mario1 = true;
+        }
+
+        if (!draw_mario1_flip && !draw_mario2_flip && 
+            !draw_mario1 && !draw_mario2)
+        {
             draw_mario1 = true;
         }
 
@@ -193,9 +203,11 @@ function draw() {
     else if (leftPressed && mario_x > 0) {
         mario_x -= 2;
     }
-    else if (spacePressed && mario_x > 0) {
-        mario_y -= 50;
+    else if (!spacePressed && mario_y < 218)  {
+        mario_y += 2;
     }
+
+
 
 
     requestAnimationFrame(draw);
