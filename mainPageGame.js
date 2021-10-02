@@ -1,5 +1,5 @@
 var canvas = document.getElementById("initialGame");
-var ctx = canvas.getContext("2d"); 
+var ctx = canvas.getContext("2d");
 
 // ctx.beginPath();
 // ctx.rect(20, 40, 50, 50);
@@ -43,16 +43,15 @@ mario_back.src = "Images/mario_back.png";
 //Load Images
 
 
-function load_images_firstTime ()
-{
+function load_images_firstTime() {
     github.onload = function () {
         ctx.drawImage(github, block_x, block_y, 50, 50);
     }
     linkedin.onload = function () {
-        ctx.drawImage(linkedin, block_x+100, block_y, 50, 50);
+        ctx.drawImage(linkedin, block_x + 100, block_y, 50, 50);
     }
     resume.onload = function () {
-        ctx.drawImage(resume, block_x+200, block_y, 40, 55);
+        ctx.drawImage(resume, block_x + 200, block_y, 40, 55);
     }
     mario1.onload = function () {
         ctx.drawImage(mario1, mario_x, mario_y, 40, 55);
@@ -74,17 +73,16 @@ function load_images_firstTime ()
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-function draw_start()
-{
+function draw_start() {
     ctx.beginPath();
-    ctx.rect(0,0, 480, 320);
+    ctx.rect(0, 0, 480, 320);
     ctx.fillStyle = "#ffd3ad";
     ctx.fill();
     ctx.closePath();
 
 
     ctx.beginPath();
-    ctx.arc(240, 160, 90, 0, Math.PI*2, false);
+    ctx.arc(240, 160, 90, 0, Math.PI * 2, false);
     ctx.fillStyle = "#0fa2f7";
     ctx.fill();
     ctx.closePath();
@@ -95,11 +93,11 @@ function draw_start()
     play_button.src = "Images/play_button.png";
     play_button.onload = function () {
         ctx.drawImage(play_button, 213, 128, 70, 70);
-        play_button.setAttribute('style','transform:rotate(200deg)');
+        play_button.setAttribute('style', 'transform:rotate(200deg)');
     }
 
-    
-    
+
+
 }
 
 
@@ -111,23 +109,21 @@ function keyDownHandler(e) {
         leftPressed = true;
     }
     else if (e.code == 'Space') {
-        if (mario_y >= 218)
-        {
+        if (mario_y >= 218) {
             mario_jump.play();
-            mario_y = mario_y - 90;  
-            
+            mario_y = mario_y - 90;
+
             add_mario();
         }
-        
-        if (mario_x >= block_x-5 && mario_x <= block_x + 55)
-        {
+
+        if (mario_x >= block_x - 5 && mario_x <= block_x + 55) {
             window.open('https://github.com/Pouya-Sameni', '_blank');
         }
-        else if (mario_x >= block_x+145 && mario_x <= block_x + 205){
-            
+        else if (mario_x >= block_x + 145 && mario_x <= block_x + 205) {
+
             window.open('https://www.linkedin.com/in/pouya-sameni-36250115b/', '_blank');
         }
-        else if (mario_x >= block_x+295 && mario_x <= block_x + 355){
+        else if (mario_x >= block_x + 295 && mario_x <= block_x + 355) {
             window.open('Files/Pouya_Sameni_Resume.pdf', '_blank');
         }
 
@@ -149,9 +145,9 @@ function redraw_All() {
 
     ctx.drawImage(mario_back, 0, 0, 480, 320);
     ctx.drawImage(github, block_x, block_y, 50, 50);
-    ctx.drawImage(linkedin, block_x+150, block_y, 50, 50);
-    ctx.drawImage(resume, block_x+300, block_y, 50, 50);
-    
+    ctx.drawImage(linkedin, block_x + 150, block_y, 50, 50);
+    ctx.drawImage(resume, block_x + 300, block_y, 50, 50);
+
 }
 
 
@@ -182,7 +178,6 @@ function add_mario() {
             x++;
         }
         else {
-            console.log(x);
             x = 0;
             draw_mario1 = !draw_mario1;
             draw_mario2 = !draw_mario2;
@@ -215,7 +210,7 @@ function add_mario() {
                 draw_mario2_flip = true;
             }
 
-            
+
 
         }
     }
@@ -229,9 +224,8 @@ function add_mario() {
             draw_mario1 = true;
         }
 
-        if (!draw_mario1_flip && !draw_mario2_flip && 
-            !draw_mario1 && !draw_mario2)
-        {
+        if (!draw_mario1_flip && !draw_mario2_flip &&
+            !draw_mario1 && !draw_mario2) {
             draw_mario1 = true;
         }
 
@@ -242,8 +236,7 @@ function add_mario() {
 
 function draw() {
 
-    if (veryFirstTime)
-    {
+    if (veryFirstTime) {
         load_images_firstTime();
         veryFirstTime = false;
     }
@@ -254,17 +247,17 @@ function draw() {
     if (rightPressed && mario_x < canvas.width - 40) {
         mario_x += 3;
 
-        if (mario_y<218){
+        if (mario_y < 218) {
             mario_y += 4;
         }
     }
     else if (leftPressed && mario_x > 0) {
         mario_x -= 3;
-        if (mario_y<218){
+        if (mario_y < 218) {
             mario_y += 4;
         }
     }
-    else if (!spacePressed && mario_y < 218)  {
+    else if (!spacePressed && mario_y < 218) {
         mario_y += 4;
     }
 
@@ -275,10 +268,18 @@ function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
     do {
-      currentDate = Date.now();
+        currentDate = Date.now();
     } while (currentDate - date < milliseconds);
-  }
+}
 
 //draw();
+
+document.body.onmousedown = function (evt) {
+    if (veryFirstTime) {
+        draw();
+
+
+    }
+}
 
 draw_start();
