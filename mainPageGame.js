@@ -276,16 +276,19 @@ function sleep(milliseconds) {
 //draw();
 draw_start();
 
-document.body.onmousedown = function (evt) {
+document.getElementById("initialGame").onmousedown = function (evt) {
     if (veryFirstTime) {
         let countOnMouse = 0;
         while (countOnMouse < 2000)
         {
             console.log("here");
-            ctx.drawImage(play_button, 213, 128, 70+countOnMouse, 70+countOnMouse);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(play_button, 213, 128, 70+(countOnMouse/10), 70+(countOnMouse/10));
             countOnMouse ++;
         }
-        draw();
+
+        //draw();
+
     }
 }
 
