@@ -38,8 +38,13 @@ var mario2_flip = new Image();
 mario2_flip.src = "Images/mario2_flip.png";
 var mario_back = new Image();
 mario_back.src = "Images/mario_back.png";
+var play_button = new Image();
+play_button.src = "Images/play_button.png";
 //////////////////////////////
-
+play_button.onload = function () {
+    ctx.drawImage(play_button, 213, 128, 70, 70);
+    play_button.setAttribute('style', 'transform:rotate(200deg)');
+}
 //Load Images
 
 
@@ -89,12 +94,8 @@ function draw_start() {
 
 
 
-    var play_button = new Image();
-    play_button.src = "Images/play_button.png";
-    play_button.onload = function () {
-        ctx.drawImage(play_button, 213, 128, 70, 70);
-        play_button.setAttribute('style', 'transform:rotate(200deg)');
-    }
+
+
 
 
 
@@ -273,13 +274,19 @@ function sleep(milliseconds) {
 }
 
 //draw();
+draw_start();
 
 document.body.onmousedown = function (evt) {
     if (veryFirstTime) {
+        let countOnMouse = 0;
+        while (countOnMouse < 2000)
+        {
+            console.log("here");
+            ctx.drawImage(play_button, 213, 128, 70+countOnMouse, 70+countOnMouse);
+            countOnMouse ++;
+        }
         draw();
-
-
     }
 }
 
-draw_start();
+
