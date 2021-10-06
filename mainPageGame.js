@@ -11,7 +11,7 @@ var mario_x = 0;
 var mario_y = 218;
 var block_x = 70;
 var block_y = 100;
-
+var x = 0;
 var rightPressed = false;
 var leftPressed = false;
 var spacePressed = false;
@@ -287,7 +287,7 @@ document.getElementById("initialGame").onmousedown = function (evt) {
             countOnMouse ++;
         }
 
-        //draw();
+        draw();
 
     }
 }
