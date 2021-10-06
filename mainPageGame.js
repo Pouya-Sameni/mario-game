@@ -93,12 +93,6 @@ function draw_start() {
     ctx.closePath();
 
 
-
-
-
-
-
-
 }
 
 
@@ -275,24 +269,33 @@ function sleep(milliseconds) {
 
 function animate_play() {
     let start = Date.now(); // remember start time
-    let temp_int = 0;
+   
+    let tempx = 213;
+    let tempy = 128;
+    let tempW = 70;
+    
+
 
     let timer = setInterval(function () {
         // how much time passed from the start?
         let timePassed = Date.now() - start;
 
-        if (timePassed >= 20000) {
+        if (timePassed >= 1000) {
             clearInterval(timer); // finish the animation after 2 seconds
+            draw();
             return;
         }
-        
-        console.log("here");
-        
-        ctx.drawImage(play_button, 213-temp_int, 128+temp_int, 70+temp_int, 70+temp_int);
-        temp_int++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(240, 160, 90, 0, Math.PI * 2, false);
+        ctx.fillStyle = "#0fa2f7";
+        ctx.fill();
+        ctx.closePath();
+        ctx.drawImage(play_button, tempx = tempx-2, tempy = tempy - 2, tempW = tempW +2 , tempW = tempW + 2);
+       
 
 
-    }, 20);
+    }, 1);
 }
 
 
@@ -302,7 +305,10 @@ draw_start();
 
 
 document.getElementById("initialGame").onmousedown = function (evt) {
-    animate_play();
+    if (veryFirstTime){
+        animate_play();
+    }
+    
 
 }
 
