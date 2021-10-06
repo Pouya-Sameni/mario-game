@@ -273,23 +273,37 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
 }
 
+function animate_play() {
+    let start = Date.now(); // remember start time
+    let temp_int = 0;
+
+    let timer = setInterval(function () {
+        // how much time passed from the start?
+        let timePassed = Date.now() - start;
+
+        if (timePassed >= 20000) {
+            clearInterval(timer); // finish the animation after 2 seconds
+            return;
+        }
+        
+        console.log("here");
+        
+        ctx.drawImage(play_button, 213-temp_int, 128+temp_int, 70+temp_int, 70+temp_int);
+        temp_int++;
+
+
+    }, 20);
+}
+
+
 //draw();
 draw_start();
 
+
+
 document.getElementById("initialGame").onmousedown = function (evt) {
-    if (veryFirstTime) {
-        let countOnMouse = 0;
-        while (countOnMouse < 2000)
-        {
-            console.log("here");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(play_button, 213, 128, 70+(countOnMouse/10), 70+(countOnMouse/10));
-            countOnMouse ++;
-        }
+    animate_play();
 
-        draw();
-
-    }
 }
 
 
