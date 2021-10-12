@@ -75,6 +75,12 @@ function load_images_firstTime() {
     }
 }
 
+window.addEventListener('keydown', function(e) {
+    if(e.keyCode == 32 && e.target == document.body) {
+      e.preventDefault();
+    }
+  });
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -131,7 +137,8 @@ function keyUpHandler(e) {
     else if (e.code == 'ArrowLeft') {
         leftPressed = false;
     }
-    else if (e.code == 'Space') {
+    else if (e.code == 'Space'&& e.getElementById == document.getElementById) {
+        e.preventDefault();
         spacePressed = false;
     }
 }
